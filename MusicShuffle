@@ -1,0 +1,33 @@
+"What is the most efficient way to implement a shuffle function in a music
+     player to play random songs without repetition"
+
+//Select an element and swap it to last , now select from last-1 till 0 elements
+// Asked in Google
+
+// O(n)  in-place swapping
+public static List<MusicTrack> shuffle3(List<MusicTrack> input) {
+
+    Random random = new Random();
+
+    int last = input.size() - 1;
+
+    while (last >= 0) {
+
+        int randomInt = Math.abs(random.nextInt() % input.size());
+
+        // O(1)
+        MusicTrack randomTrack = input.get(randomInt);
+
+        MusicTrack temp = input.get(last);
+
+        // O(1)
+        input.set(last, randomTrack);
+        input.set(randomInt, temp);
+
+        --last;
+
+    }
+
+    return input;
+
+}
